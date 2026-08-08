@@ -54,3 +54,22 @@ kubectl expose deployment my-aks-app --type=LoadBalancer --port=80
 ## Cost Note
 
 AKS control plane is free; only the underlying node VM incurs cost. This cluster is provisioned and destroyed on demand for learning purposes, not left running continuously.
+
+## Observability (Week 8 Addition)
+
+Deployed the kube-prometheus-stack via Helm, adding full monitoring and alerting to the cluster:
+
+- Prometheus collecting real-time cluster and pod-level metrics
+- Grafana dashboards showing live CPU, memory, and per-namespace resource usage
+- A custom alert rule configured to fire when the app's CPU usage exceeds a defined threshold
+
+## What Was Tested and Proven (Observability)
+
+1. Installed Prometheus, Grafana, and Alertmanager together via a single Helm chart
+2. Confirmed pre-built Kubernetes dashboards showing real, live cluster data
+3. Created a custom alert rule monitoring the app's actual CPU usage
+4. Generated real load against the app and watched the alert transition from Normal to Firing in real time
+5. Confirmed the alert's threshold-crossing behavior was accurately reflected on a live graph
+
+![Cluster dashboard with live metrics](screenshots/grafana-dashboard.png)
+![Alert firing under real load](screenshots/alert-firing.png)
