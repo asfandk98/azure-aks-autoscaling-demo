@@ -73,3 +73,7 @@ Deployed the kube-prometheus-stack via Helm, adding full monitoring and alerting
 
 ![Cluster dashboard with live metrics](screenshots/grafana-dashboard.png)
 ![Alert firing under real load](screenshots/alert-firing.png)
+
+## Known Limitation (Honest Callout)
+
+Grafana was exposed via a public LoadBalancer IP for demo convenience during this exercise. This is not the production-correct approach — a real environment would either restrict the LoadBalancer to specific trusted IPs (`loadBalancerSourceRanges`), or more correctly, keep monitoring tools entirely off the public internet, accessible only via VPN, a bastion host, or `kubectl port-forward` from an authenticated session.
